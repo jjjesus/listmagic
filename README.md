@@ -2,5 +2,4 @@
 
 ## A Model-View-ViewModel (MVVM) example for TornadoFX
 
-![initial]: (doc/img/initial.jpg)
-
+![screenshot](doc/img/initial.JPG)
