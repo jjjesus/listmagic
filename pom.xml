@@ -10,8 +10,10 @@
     <packaging>jar</packaging>
 
     <properties>
+        <jvm.target.version>1.8</jvm.target.version>
         <kotlin.version>1.2.21</kotlin.version>
         <tornadofx.version>1.7.14</tornadofx.version>
+        <maven.assembly.plugin.version>3.1.0</maven.assembly.plugin.version>
     </properties>
 
     <dependencies>
@@ -48,7 +50,7 @@
                             <goal>compile</goal>
                         </goals>
                         <configuration>
-                        <jvmTarget>1.8</jvmTarget>
+                            <jvmTarget>${jvm.target.version}</jvmTarget>
                         </configuration>
                     </execution>
                     <execution>
@@ -57,6 +59,30 @@
                         <goals>
                             <goal>test-compile</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven.assembly.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>com.johnjesus.listmagic.app.MyApp</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
